@@ -1,0 +1,22 @@
+pipeline {
+    agent{
+        node{
+            label 'docker-agent-python'
+        }
+    }
+
+    stages {
+        stage('Pull Code from GitHub') {
+            steps {
+                git branch: 'main', url:'https://github.com/i-m-hossain/jenkins-101'
+            }
+        }
+
+        stage('Run Python Script') {
+            steps {
+                sh 'python3 hello.py'
+            }
+        }
+    }
+}
+
